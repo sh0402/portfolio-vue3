@@ -1,18 +1,62 @@
 <template>
 	<div id="app">
 		<Navi />
+		<button @click="test">test</button>
 		<div class="container">
-			<router-view ref="myGallery" :GalleryData="GalleryData" />
+			<router-view />
+			<div class="card-box"></div>
 		</div>
+
 		<Footer />
 	</div>
 </template>
 
 <script>
+// import $ from 'jquary';
 import Navi from '@/components/App/Navi.vue';
 import Footer from '@/components/App/Footer.vue';
-
 import GalleryData from '@/assets/data/galleryData.js';
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import firebaseConfig from '../firebaseConfig';
+// const firebaseConfig = {
+// 	apiKey: 'AIzaSyDPgE59pxvgaTtcyv5O4_eK9gdeWHjbSfw',
+// 	authDomain: 'portfolio-27205.firebaseapp.com',
+// 	projectId: 'portfolio-27205',
+// 	storageBucket: 'portfolio-27205.appspot.com',
+// 	messagingSenderId: '593980233776',
+// 	appId: '1:593980233776:web:e1d34d9ab86a8821a635f5',
+// 	measurementId: 'G-9Z6GP0WR3R'
+// };
+
+firebase.initializeApp(firebaseConfig);
+
+// const db = firebase.firestore();
+
+const db = firebase.firestore();
+console.log(db);
+
+// db.collection('gallery')
+// 	.get()
+// 	.then(result => {
+// 		result.forEach(doc => {
+// 			console.log(doc.data());
+// 		});
+// 		let template = `<div class="card swiper-slide">
+// 				<div class="card-image"></div>
+// 				<div class="card-body">
+// 					<h2>work-class-name</h2>
+// 					<p>
+// 						Adobe Photoshop & illustrator Working Time : 4 Days<br />
+// 						Size : 1,020 x 1,020 x 460 (mm)
+// 					</p>
+// 					<a href="#" class="btn btn-primary"> Lead More </a>
+// 				</div>
+// 			</div>`;
+
+// 		$('card-box').append(template);
+// 	});
 
 export default {
 	name: 'App',
@@ -24,11 +68,6 @@ export default {
 		return {
 			GalleryData: GalleryData
 		};
-	},
-	computed: {
-		gallery() {
-			return this.$refs.myGallery.$gallery;
-		}
 	}
 };
 </script>
@@ -49,5 +88,253 @@ export default {
 	-moz-osx-font-smoothing: grayscale;
 	margin-top: 6rem;
 	margin-bottom: 11rem;
+}
+/* MAIN BANNER */
+#mainBnr {
+	position: relative;
+	width: 100%;
+	height: 600px;
+	--height: 600px;
+	border-radius: 1rem;
+	background-color: #fff;
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+	margin-bottom: 2rem;
+
+	.mainBnr-left {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 55%;
+		padding: 0 4rem;
+		transform: translate(0, -50%);
+
+		h1 {
+			font-size: 3rem;
+			font-weight: 900;
+			margin-bottom: 2rem;
+
+			span {
+				color: $brandColor;
+			}
+		}
+
+		p {
+			color: #747474;
+			font-size: 1.25rem;
+
+			&:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+
+	.mainBnr-right {
+		width: 45%;
+		height: 0;
+		padding-top: calc(var(--height) * 1);
+		margin-left: auto;
+		background: url(https://images.unsplash.com/photo-1432251407527-504a6b4174a2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 0 1rem 1rem 0;
+	}
+}
+
+#aboutBnr,
+#worksBnr {
+	width: 100%;
+	background-color: #fff;
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 1rem;
+	padding-inline-start: 0;
+	padding: 2rem;
+
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		font-weight: 900;
+	}
+
+	.title-head {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 2rem;
+
+		h2 {
+			font-size: 1.5rem;
+			font-weight: 900;
+		}
+	}
+}
+
+#aboutBnr {
+	h1 {
+		text-align: center;
+	}
+
+	.title-head {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 2rem;
+
+		h2 {
+			font-size: 1.5rem;
+			font-weight: 900;
+		}
+	}
+
+	.aboutBnr-thumb {
+		display: flex;
+		justify-content: center;
+		width: 200px;
+		height: 200px;
+		background-image: url('https://images.unsplash.com/photo-1536590158209-e9d615d525e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80');
+		background-size: cover;
+		background-position: center;
+		border-radius: 50%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 2rem;
+	}
+
+	.aboutBnr-item {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		flex-direction: row;
+		margin-left: auto;
+		margin-right: auto;
+
+		.aboutBnr-element {
+			width: 49%;
+			font-size: 1rem;
+			color: $brandColor;
+			font-weight: bold;
+			text-align: center;
+			background-color: rgba(0, 116, 217, 0.1);
+			border-radius: 0.5rem;
+			padding: 1rem 0;
+			margin: 0;
+			margin-bottom: 0.5rem;
+		}
+
+		.aboutBnr-element:nth-child(2n) {
+			margin-right: 0;
+		}
+	}
+}
+
+/* WORKS BANNER */
+#worksBnr {
+	h1 {
+		text-align: left;
+	}
+
+	.swiper-container {
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+
+		.swiper-slide {
+			/* Center slide text vertically */
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			flex-direction: column;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+
+		.card {
+			width: 100%;
+			background-color: #f1f3f4;
+			border-radius: 0.5rem;
+			border: none;
+
+			.card-image {
+				display: block;
+				width: 100%;
+				height: 0;
+				padding-top: calc(100% / 10 * 10);
+				background-image: url('https://images.unsplash.com/photo-1609931424192-b7cf25773e26?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
+				background-size: cover;
+				background-position: center;
+				border-radius: 0.5rem 0.5rem 0 0;
+			}
+
+			.card-body {
+				padding: 1.5rem;
+
+				h2 {
+					font-size: 1.5rem;
+					font-weight: 900;
+					margin-top: 0;
+					margin-bottom: 1rem;
+				}
+
+				p {
+					font-size: 1rem;
+					color: #747474;
+					margin-bottom: 1rem;
+				}
+
+				a {
+					display: table-cell;
+					font-size: 1rem;
+					font-weight: 600;
+					color: #fff;
+					padding: 0.75rem;
+					border-radius: 0.5rem;
+					background-color: $brandColor;
+				}
+			}
+		}
+	}
+
+	.swiper-pagination {
+		bottom: 0.5rem;
+		width: 100%;
+		left: 0;
+	}
+
+	.swiper-pagination-bullet {
+		width: 0.5rem;
+		height: 0.5rem;
+		margin-inline-start: 0.5rem;
+	}
+}
+
+.title-head {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+
+	.setting-btn {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin-bottom: 0.5rem;
+
+		span {
+			cursor: pointer;
+			width: 0.25rem;
+			height: 0.25rem;
+			border-radius: 50%;
+			background-color: #222;
+			margin-bottom: 0.25rem;
+		}
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 </style>

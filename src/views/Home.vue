@@ -61,15 +61,18 @@
 					consectetur
 				</h1>
 
-				<!-- <CardSlide /> -->
+				<CardSlide />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import CardSlide from '@/components/Container/CardSlide.vue';
 export default {
 	name: 'Home',
-	components: {}
+	components: {
+		CardSlide
+	}
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<div>asdad</div>
+	<div class=".card-box">{{ Template }}</div>
 	<!-- <div class="wrapper">
 		<swiper
 			:slidesPerView="2.5"
@@ -80,17 +80,11 @@
 <script>
 export default {
 	components: {},
+	props: {
+		Template: Object
+	},
 	data() {
-		// return {
-		// 	SwiperOptions: {
-		// 		slidesPerView: 2.5,
-		// 		spaceBetween: 10,
-		// 		pagination: {
-		// 			el: '.swiper-pagination',
-		// 			clickable: true
-		// 		}
-		// 	}
-		// };
+		return {};
 	}
 };
 </script>
